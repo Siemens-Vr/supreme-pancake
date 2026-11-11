@@ -194,7 +194,13 @@ function Quote({
     </a>
   );
 }
-function Orbit({ className = "" }: { className?: string }) {
+function Orbit({
+  className = "",
+  eager = false,
+}: {
+  className?: string;
+  eager?: boolean;
+}) {
   return (
     <div className={`orbit ${className}`} aria-hidden="true">
       <Image
@@ -204,6 +210,7 @@ function Orbit({ className = "" }: { className?: string }) {
         height={1580}
         sizes="(max-width: 760px) 110vw, 1200px"
         className="orbit-image"
+        loading={eager ? "eager" : "lazy"}
       />
       <div className="orbit-glow" />
     </div>
@@ -672,7 +679,7 @@ export default function Homepage() {
             <div className="hero-ring-shift">
               <div className="hero-ring-scroll">
                 <div className="hero-ring-turn">
-                  <Orbit className="hero-ring" />
+                  <Orbit className="hero-ring" eager />
                 </div>
               </div>
             </div>
